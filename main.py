@@ -23,8 +23,10 @@ while(True):
         if int(txtIn) == 3:
             print('\n3. Lavori in corso ....')
             continue
-        if int(txtIn) == 4:
-            print('\n4. Lavori in corso ....')
+        if int(txtIn) == 4: # stampa tutto il dizionario
+            print('\nContenuto del dizionario Klinkon/Italiano')
+            t.print_dictionary(dizionario_alieno_italiano)
+            input('\nPremi INVIO per continuare ....')
             continue
         if int(txtIn) == 5:
             break

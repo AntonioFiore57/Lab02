@@ -44,3 +44,17 @@ class Translator:
     def handleWildCard(self,query):
         # query is a string with a ? --> <par?la_aliena>
         pass
+
+    def print_dictionary(self, diz):
+        """
+        viene stampato a a console l'oggetto dizionario.
+        si gestesce da qiuesto metodo la visualizzazione
+        del dizionario interno dell'oggetto dizionario
+        :param diz: oggetto Dictionary
+        :return: None
+        """
+        if len(diz.dizionario) != 0:
+            for parola_aliena, parola_italiana in diz.dizionario.items():
+                print(f"{parola_aliena:20}->{parola_italiana:20}\n")
+        else:
+            print("\nNon ci sono voci")
