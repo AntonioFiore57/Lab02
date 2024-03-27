@@ -1,22 +1,36 @@
+import dictionary as diz
 class Translator:
 
     def __init__(self):
-        self.dizionario = []
+
         pass
 
     def printMenu(self):
         # 1. Aggiungi nuova parola
         # 2. Cerca una traduzione
         # 3. Cerca con wildcard
-        # 4. Exit
-        pass
+        # 4. stampa tutto il dizionario
+        # 5. exit
+        menu = '\n' + 40*"-" + '\n'
+        menu += '\tTraduttore Klingon - Italiano'
+        menu += '\n' + 40 * "-" + '\n'
+        menu += '1. Aggiungi nuova parola\n'
+        menu += '2. Cerca una traduzione\n'
+        menu += '3. Cerca con wildcard\n'
+        menu += '4. stampa tutto il dizionario\n'
+        menu += '5. exit\n'
+        print(menu)
 
     def loadDictionary(self, dict):
+        dizionario = diz.Dictionary()
+
         # dict is a string with the filename of the dictionary
-        with open('dict', 'r', encoding='utf-8') as f_in:
+        with open('dictionary.txt', 'r', encoding='utf-8') as f_in:
             for riga in f_in:
-                voci=riga.strip().split()
-                self.dizionario.append(voci[0], voci[1])
+                campi=riga.strip().split()
+                dizionario.addWord(campi[0], campi[1])
+        return dizionario
+
 
 
     def handleAdd(self, entry):

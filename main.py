@@ -1,32 +1,34 @@
 import translator as tr
-import dictionary as diz
+# import dictionary as diz
 t = tr.Translator()
 
+
+dizionario_alieno_italiano = t.loadDictionary('dictionary.txt')
 
 while(True):
 
     t.printMenu()
 
-    t.loadDictionary("filename.txt")
-    dd = diz.Dictionary(t.dizionario)
-
-    t.printMenu()
-
-    txtIn = input()
+    txtIn = input('\nInserisci la tua scelta: ')
 
     # Add input control here!
     if txtIn in ('1', '2', '3', '4', '5'):
         if int(txtIn) == 1:
-            print()
-            txtIn = input()
+            print('\n1. Lavori in corso ....')
+            # txtIn = input()
             continue
         if int(txtIn) == 2:
+            print('\n2. Lavori in corso ....')
             continue
         if int(txtIn) == 3:
+            print('\n3. Lavori in corso ....')
             continue
         if int(txtIn) == 4:
+            print('\n4. Lavori in corso ....')
             continue
         if int(txtIn) == 5:
             break
     else:
         print('\nAttenzione. Scelta non valida ')
+
+print('\n*** Finito ***')
