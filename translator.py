@@ -37,14 +37,18 @@ class Translator:
 
     def handleAdd(self, entry):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
+        # controllo sulle parole inserite
         self.dizionario.addWord(entry[0], entry[1])
-
-
-        pass
 
     def handleTranslate(self, query):
         # query is a string <parola_aliena>
-        pass
+        # controllo sulla parola inserita
+        parola_italiana = self.dizionario.translate(query)
+        if parola_italiana != '':
+            print(query,'-->', parola_italiana)
+        else:
+            print(f"\nNon conosco la parola Klingon {query}")
+        return None
 
     def handleWildCard(self,query):
         # query is a string with a ? --> <par?la_aliena>
