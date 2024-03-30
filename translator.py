@@ -2,6 +2,7 @@ import dictionary as diz
 class Translator:
 
     def __init__(self):
+        self.dizionario =diz.Dictionary()
 
         pass
 
@@ -22,14 +23,15 @@ class Translator:
         print(menu)
 
     def loadDictionary(self, dict):
-        dizionario = diz.Dictionary()
 
         # dict is a string with the filename of the dictionary
         with open('dictionary.txt', 'r', encoding='utf-8') as f_in:
             for riga in f_in:
-                campi=riga.strip().split()
-                dizionario.addWord(campi[0], campi[1])
-        return dizionario
+                riga = riga.strip()
+                campi=riga.split()
+
+                self.dizionario.addWord(campi[0], campi[1])
+        return None
 
 
 
@@ -45,16 +47,15 @@ class Translator:
         # query is a string with a ? --> <par?la_aliena>
         pass
 
-    def print_dictionary(self, diz):
+    def print_dictionary(self):
         """
-        viene stampato a a console l'oggetto dizionario.
-        si gestesce da qiuesto metodo la visualizzazione
-        del dizionario interno dell'oggetto dizionario
-        :param diz: oggetto Dictionary
+        viene stampato a a console self.dizionario.
+        si gestesce da questo metodo la visualizzazione
+        del dizionario
         :return: None
         """
-        if len(diz.dizionario) != 0:
-            for parola_aliena, parola_italiana in diz.dizionario.items():
-                print(f"{parola_aliena:20}->{parola_italiana:20}\n")
+        if len(self.dizionario.dizionario) != 0:
+            for parola_aliena, parola_italiana in self.dizionario.dizionario.items():
+                print(f"{parola_aliena:20}->{parola_italiana:20}")
         else:
             print("\nNon ci sono voci")

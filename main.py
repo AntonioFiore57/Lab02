@@ -1,9 +1,7 @@
 import translator as tr
 # import dictionary as diz
 t = tr.Translator()
-
-
-dizionario_alieno_italiano = t.loadDictionary('dictionary.txt')
+t.loadDictionary('dictionary.txt')
 
 while(True):
 
@@ -13,9 +11,11 @@ while(True):
 
     # Add input control here!
     if txtIn in ('1', '2', '3', '4', '5'):
-        if int(txtIn) == 1:
-            print('\n1. Lavori in corso ....')
-            # txtIn = input()
+        if int(txtIn) == 1: # Aggiungi nuova parola
+            txtIn = input("\nQuale parola vuoi aggiungere? --> ")
+            parola_aliena, parola_italiana = txtIn.split()
+            print(parola_aliena, parola_italiana)
+            t.handleAdd(parola_aliena, parola_italiana)
             continue
         if int(txtIn) == 2:
             print('\n2. Lavori in corso ....')
@@ -25,7 +25,7 @@ while(True):
             continue
         if int(txtIn) == 4: # stampa tutto il dizionario
             print('\nContenuto del dizionario Klinkon/Italiano')
-            t.print_dictionary(dizionario_alieno_italiano)
+            t.print_dictionary()
             input('\nPremi INVIO per continuare ....')
             continue
         if int(txtIn) == 5:
