@@ -13,9 +13,10 @@ while(True):
     if txtIn in ('1', '2', '3', '4', '5'):
         if int(txtIn) == 1: # Aggiungi nuova parola
             txtIn = input("\nQuale parola vuoi aggiungere? --> ")
+            # controllo sulle parole inserite
             parola_aliena, parola_italiana = txtIn.split()
             print(parola_aliena, parola_italiana)
-            t.handleAdd(parola_aliena, parola_italiana)
+            t.handleAdd((parola_aliena, parola_italiana))
             continue
         if int(txtIn) == 2:
             print('\n2. Lavori in corso ....')

@@ -37,6 +37,9 @@ class Translator:
 
     def handleAdd(self, entry):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
+        self.dizionario.addWord(entry[0], entry[1])
+
+
         pass
 
     def handleTranslate(self, query):
