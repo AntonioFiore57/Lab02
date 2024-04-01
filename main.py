@@ -14,10 +14,12 @@ while(True):
         if int(txtIn) == 1: # Aggiungi nuova parola
             txtIn = input("\nQuale parola vuoi aggiungere? --> ")
             txtIn = txtIn.lower()
-            parola_aliena, parola_italiana = txtIn.split()
-            print(parola_aliena, parola_italiana)
+            parole = txtIn.split()
+            parola_aliena, *parole_italiano = parole
+            print(parola_aliena, ','.join(parole_italiano))
             try:
-                t.handleAdd((parola_aliena, parola_italiana))
+                parole = tuple(parole)
+                t.handleAdd(parole)
             except ValueError as ee:
                 print(ee)
 

@@ -47,15 +47,19 @@ class Translator:
                 break
         if not ok:
             raise ValueError(f"Elemento {i} non valido")
-        self.dizionario.addWord(entry[0], entry[1])
+        parola_aliena, *parole_italiane = entry
+        for parola in parole_italiane:
+            self.dizionario.addWord(parola_aliena, parola)
 
     def handleTranslate(self, query):
         # query is a string <parola_aliena>
         # controllo sulla parola inserita
         if self._parolaOK(query):
-            parola_italiana = self.dizionario.translate(query)
-            if parola_italiana != '':
-                print(query,'-->', parola_italiana)
+            parole_italiane = self.dizionario.translate(query)
+            if parole_italiane != '':
+                print(query,'-->', parole_italiane)
+
+
             else:
                 print(f"\nNon conosco la parola Klingon {query}")
         else:
@@ -74,8 +78,8 @@ class Translator:
         :return: None
         """
         if len(self.dizionario.dizionario) != 0:
-            for parola_aliena, parola_italiana in self.dizionario.dizionario.items():
-                print(f"{parola_aliena:20}->{parola_italiana:20}")
+            for parola_aliena, parole_italiane in self.dizionario.dizionario.items():
+                print(f"{parola_aliena:20}->{','.join(parole_italiane)}")
         else:
             print("\nNon ci sono voci")
     def _parolaOK(self, parola):
