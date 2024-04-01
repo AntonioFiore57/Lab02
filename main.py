@@ -13,14 +13,22 @@ while(True):
     if txtIn in ('1', '2', '3', '4', '5'):
         if int(txtIn) == 1: # Aggiungi nuova parola
             txtIn = input("\nQuale parola vuoi aggiungere? --> ")
-
+            txtIn = txtIn.lower()
             parola_aliena, parola_italiana = txtIn.split()
             print(parola_aliena, parola_italiana)
-            t.handleAdd((parola_aliena, parola_italiana))
+            try:
+                t.handleAdd((parola_aliena, parola_italiana))
+            except ValueError as ee:
+                print(ee)
+
             continue
         if int(txtIn) == 2: #  Cerca una traduzione
             parola_aliena = input("\nInserisci la parola aliena da tradurre: ")
-            t.handleTranslate(parola_aliena)
+            parola_aliena = parola_aliena.lower()
+            try:
+                t.handleTranslate(parola_aliena)
+            except ValueError as ee:
+                print(ee)
 
             continue
         if int(txtIn) == 3:

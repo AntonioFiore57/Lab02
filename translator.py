@@ -1,4 +1,6 @@
 import dictionary as diz
+import string
+
 class Translator:
 
     def __init__(self):
@@ -38,16 +40,26 @@ class Translator:
     def handleAdd(self, entry):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
         # controllo sulle parole inserite
+        ok = True
+        for i in range(len(entry)):
+            if not self._parolaOK(entry[i]):
+                ok = False
+                break
+        if not ok:
+            raise ValueError(f"Elemento {i} non valido")
         self.dizionario.addWord(entry[0], entry[1])
 
     def handleTranslate(self, query):
         # query is a string <parola_aliena>
         # controllo sulla parola inserita
-        parola_italiana = self.dizionario.translate(query)
-        if parola_italiana != '':
-            print(query,'-->', parola_italiana)
+        if self._parolaOK(query):
+            parola_italiana = self.dizionario.translate(query)
+            if parola_italiana != '':
+                print(query,'-->', parola_italiana)
+            else:
+                print(f"\nNon conosco la parola Klingon {query}")
         else:
-            print(f"\nNon conosco la parola Klingon {query}")
+            raise ValueError("Parola inserita non valida")
         return None
 
     def handleWildCard(self,query):
@@ -66,3 +78,11 @@ class Translator:
                 print(f"{parola_aliena:20}->{parola_italiana:20}")
         else:
             print("\nNon ci sono voci")
+    def _parolaOK(self, parola):
+        ok = True
+        for c in parola:
+            if c not in string.ascii_lowercase:
+                ok=False
+                break
+        return  ok
+
