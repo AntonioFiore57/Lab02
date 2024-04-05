@@ -33,8 +33,15 @@ while(True):
                 print(ee)
 
             continue
-        if int(txtIn) == 3:
-            print('\n3. Lavori in corso ....')
+        if int(txtIn) == 3: # Cerca con wildcard
+            print('\nRicerca con wildcard')
+            parola_aliena = input("\nInserisci la parola aliena da tradurre: ")
+            parola_aliena = parola_aliena.lower()
+            try:
+                t.handleWildCard(parola_aliena)
+            except ValueError as ee:
+                print(ee)
+
             continue
         if int(txtIn) == 4: # stampa tutto il dizionario
             print('\nContenuto del dizionario Klinkon/Italiano')

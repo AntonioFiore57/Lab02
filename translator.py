@@ -6,7 +6,7 @@ class Translator:
     def __init__(self):
         self.dizionario =diz.Dictionary()
 
-        pass
+
 
     def printMenu(self):
         # 1. Aggiungi nuova parola
@@ -53,12 +53,12 @@ class Translator:
 
     def handleTranslate(self, query):
         # query is a string <parola_aliena>
+
         # controllo sulla parola inserita
         if self._parolaOK(query):
             parole_italiane = self.dizionario.translate(query)
-            if parole_italiane != '':
-                print(query,'-->', parole_italiane)
-
+            if len(parole_italiane) != 0:
+                print(query, ':',  ', '.join(parole_italiane))
 
             else:
                 print(f"\nNon conosco la parola Klingon {query}")
@@ -68,7 +68,18 @@ class Translator:
 
     def handleWildCard(self,query):
         # query is a string with a ? --> <par?la_aliena>
-        pass
+        if self._parolaOK(query, withWildCard=True):
+        posizione = query.find('?')
+        if posizione != -1:
+            parole_italiane_trovate = diz.Dictionary.translateWordWildCard(query)
+            if len(parole_italiane_trovate) != 0:
+                for parola_aliena, parole_italiane in parole_italiane_trovate.items():
+                    res = parola_aliena + ': '
+                    res = res + ', '.join(parole_italiane)
+        else:
+            pass
+
+        return None
 
     def print_dictionary(self):
         """
@@ -82,10 +93,11 @@ class Translator:
                 print(f"{parola_aliena:20}->{','.join(parole_italiane)}")
         else:
             print("\nNon ci sono voci")
-    def _parolaOK(self, parola):
+    def _parolaOK(self, parola, withWildCard = False):
+        setCaratteri = string.ascii_lowercase + '?' if withWildCard else string.ascii_lowercase
         ok = True
         for c in parola:
-            if c not in string.ascii_lowercase:
+            if c not in setCaratteri:
                 ok=False
                 break
         return  ok
